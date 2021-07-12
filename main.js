@@ -32,15 +32,26 @@ function changeExtension(file, extension){
     return path.join(path.dirname(file), basename + extension);
 }
 //convert OBJ to GLTF
-for (const file in targetFiles){
-    const fn = path.join(__dirname, targetFiles[file]);
-    const fn_out = path.join(outDir, changeExtension(targetFiles[file], ".gltf"));
-    const ext = ".gltf";
+// for (const file in targetFiles){
+//     const fn = path.join(__dirname, targetFiles[file]);
+//     const fn_out = path.join(outDir, changeExtension(targetFiles[file], ".gltf"));
+//     const ext = ".gltf";
+//
+//     obj2gltf(fn)
+//         .then(function (gltf){
+//             const data = Buffer.from(JSON.stringify(gltf));
+//             fs.writeFileSync(fn_out, data);
+//         });
+//     //console.log("Files written to " + outDir)
+//}
 
-    obj2gltf(fn)
-        .then(function (gltf){
-            const data = Buffer.from(JSON.stringify(gltf));
-            fs.writeFileSync(fn_out, data);
-        });
-    console.log("Files written to " + outDir)
-}
+// GLTF-Transform
+const io = new NodeIO();
+const document = new Document();
+
+const gltf_files = fs.readdirSync(outDir)
+console.log(io.read('models/GLTF Out/Cone.gltf'))
+// for (const file in gltf_files){
+//     const fp = path.join(outDir, gltf_files[file]);
+//     console.log(io.read(fp))
+// }

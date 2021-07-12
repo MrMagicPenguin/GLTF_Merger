@@ -1,8 +1,9 @@
 {
-  "name": "MergeGLTF",
+  "name": "mergegltf",
   "version": "1.0.0",
   "dependencies": {
-    "@gltf-transform/core": "^0.12.3",
+    "@gltf-transform/core": "^0.12.4",
+    "@gltf-transform/functions": "^0.12.4",
     "obj2gltf": "^3.1.0"
   },
   "type": "module"

@@ -1,2 +1,4 @@
 *.mtl
 node_modules/
+models/GLTF Out/
+models/scene.glb

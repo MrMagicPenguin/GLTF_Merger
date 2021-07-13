@@ -59,13 +59,17 @@ for (const file in glb_files){
     document.merge(io.read(fp))
 }
 
-
-
-
 const root = document.getRoot();
+const rootBuffer = root.listBuffers()[0];
+
 const mainScene = root.listScenes()[0];
+
 // Iterate over scenes in document, move children into common scene
 let i = 0; // frame index
+
+root.listAccessors().forEach((a) => a.setBuffer(rootBuffer));
+root.listBuffers().forEach((b, index) => index > 0 ? b.dispose() : null)
+
 for (const scene of root.listScenes()) {
 
     if (scene === mainScene)

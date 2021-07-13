@@ -84,6 +84,5 @@ for (const scene of root.listScenes()) {
 }
 
 await document.transform(prune());
-
-io.write(path.join(outDir, 'model.gltf'), document)
-//console.log(mainScene.getName());
+console.log(document)
+io.write(path.join(outDir, "model.glb"), document)

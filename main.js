@@ -7,8 +7,8 @@ import {prune} from "@gltf-transform/functions";
 // probably change to cwd when converted to actual Node script
 // For some reason this pathname is the only way to make it work
 // Either Webstorm weirdness, or my own lack of understanding.
-const __dirname = path.dirname('./models/models');
-const outDir = path.join(__dirname, 'GLTFOut');
+const dirname = path.dirname('./models/models');
+const outDir = path.join(dirname, 'GLTFOut');
 
 // Create output folder
 fs.mkdir(outDir,
@@ -20,7 +20,7 @@ fs.mkdir(outDir,
 });
 
 // Read all files in dir
-const files = fs.readdirSync(__dirname);
+const files = fs.readdirSync(dirname);
 // Select required files
 const targetFiles =  files.filter(file => {
     return path.extname(file).toLowerCase() === ".obj";
@@ -34,7 +34,7 @@ function changeExtension(file, extension){
 }
 //convert OBJ to GLTF
 for (const file in targetFiles){
-    const fn = path.join(__dirname, targetFiles[file]);
+    const fn = path.join(dirname, targetFiles[file]);
     const fn_out = path.join(outDir, changeExtension(targetFiles[file], ".glb"));
 
     obj2gltf(fn ,{binary : true})
@@ -61,7 +61,7 @@ for (const file in glb_files){
 
 const root = document.getRoot();
 const rootBuffer = root.listBuffers()[0];
-
+root.setName("Root")
 const mainScene = root.listScenes()[0];
 
 // Iterate over scenes in document, move children into common scene
@@ -73,10 +73,10 @@ root.listBuffers().forEach((b, index) => index > 0 ? b.dispose() : null)
 for (const scene of root.listScenes()) {
 
     if (scene === mainScene)
-        scene.setName("Main")
+        continue;
 
     for (const child of scene.listChildren()){
-        scene.setName(`Frame_${i}`)
+        child.setName(`Frame_${i}`);
         mainScene.addChild(child)
         i++
     }
@@ -84,5 +84,4 @@ for (const scene of root.listScenes()) {
 }
 
 await document.transform(prune());
-console.log(document)
 io.write(path.join(outDir, "model.glb"), document)

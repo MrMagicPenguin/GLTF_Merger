@@ -4,14 +4,14 @@ import fs from 'fs';
 import obj2gltf from 'obj2gltf'
 import {prune} from "@gltf-transform/functions";
 
-// probably change to cwd when converted to actual Node script
-// For some reason this pathname is the only way to make it work
-// Either Webstorm weirdness, or my own lack of understanding.
-const dirname = path.dirname('./models/models');
-const outDir = path.join(dirname, 'GLTFOut');
+// use string over path functions for exact folder
+const f_out = './GLTFOut'
+const obj_seq = './models/'
+const glb_seq = path.join(f_out, "GLB Sequence")
+
 
 // Create output folder
-fs.mkdir(outDir,
+fs.mkdir(f_out,
     {recursive: true},
     (err) => {
     if (err){
@@ -20,7 +20,7 @@ fs.mkdir(outDir,
 });
 
 // Read all files in dir
-const files = fs.readdirSync(dirname);
+const files = fs.readdirSync(obj_seq);
 // Select required files
 const targetFiles =  files.filter(file => {
     return path.extname(file).toLowerCase() === ".obj";
@@ -34,28 +34,28 @@ function changeExtension(file, extension){
 }
 //convert OBJ to GLTF
 for (const file in targetFiles){
-    const fn = path.join(dirname, targetFiles[file]);
-    const fn_out = path.join(outDir, changeExtension(targetFiles[file], ".glb"));
+    const fn = path.join(obj_seq, targetFiles[file]);
+    const fn_out = path.join(glb_seq + "", changeExtension(targetFiles[file], ".glb"));
 
     obj2gltf(fn ,{binary : true})
         .then(function(glb){
             //const data = Buffer.from(JSON.stringify(glb));
             fs.writeFileSync(fn_out, glb);
         });
-    //console.log("Files written to " + outDir)
+    //console.log("Files written to " + f_out)
 }
 
 // GLTF-Transform
 const io = new NodeIO();
 const document = new Document();
 
-const glb_files = fs.readdirSync(outDir).filter((file => {
+const glb_files = fs.readdirSync(glb_seq).filter((file => {
     return path.extname(file).toLowerCase() === ".glb";
 }))
 
 // Load N files and merge into one document with N Scenes
 for (const file in glb_files){
-    const fp = path.join(outDir, glb_files[file]);
+    const fp = path.join(glb_seq, glb_files[file]);
     document.merge(io.read(fp))
 }
 
@@ -84,4 +84,4 @@ for (const scene of root.listScenes()) {
 }
 
 await document.transform(prune());
-io.write(path.join(outDir, "model.glb"), document)
+io.write(path.join(f_out, "model.glb"), document)

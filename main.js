@@ -6,8 +6,8 @@ import {prune} from "@gltf-transform/functions";
 
 // use string over path functions for exact folder
 const f_out = './GLTFOut'
-const obj_seq = './models/'
-const glb_seq = path.join(f_out, "GLB Sequence")
+const obj_seq = './TestModels/StressTestOBJSeq/'
+const glb_seq = path.join(obj_seq, "GLTF_Out")
 
 
 // Create output folder

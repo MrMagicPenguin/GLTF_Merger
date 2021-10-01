@@ -1,7 +1,7 @@
 import fs from "fs"
 import path from "path";
 
-export function makeDirectory(name){
+export function makeDirectory(name: string){
     fs.mkdir(name,
         {recursive: true},
         (err) => {
@@ -11,7 +11,7 @@ export function makeDirectory(name){
         });
 }
 
-export function changeExtension(file, extension){
+export function changeExtension(file: string, extension: string){
     const basename = path.basename(file, path.extname(file))
     return path.join(path.dirname(file), basename + extension);
 }

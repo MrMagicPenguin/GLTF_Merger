@@ -1,8 +1,15 @@
 {
+  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "sourceMap": true,
+    "lib": ["ES5", "ES6"],
+    "declaration": true,
+    "outDir": "lib",
+    "rootDir": "src",
+    "strict": true,
+    "types": ["node"],
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "moduleResolution": "node"
   },

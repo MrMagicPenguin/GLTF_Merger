@@ -3,7 +3,7 @@ import fs from 'fs'
 import {filterByType, makeDirectory} from "../filemanager";
 import {ConverterFactory} from "../Converter";
 
-export function merge(format) {
+export function merge(format: string) {
     // Check for output type:
     const out_format = format.toLowerCase()
 

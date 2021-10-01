@@ -13,6 +13,9 @@
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
+  "include": [
+    "src/types/gltf.d.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,34 +1,14 @@
 {
-  "name": "gltf_merger",
+  "name": "mergegltf",
   "version": "1.0.0",
   "dependencies": {
     "@gltf-transform/core": "^0.12.4",
     "@gltf-transform/functions": "^0.12.4",
-    "commander": "^8.2.0",
     "inquirer": "^8.1.2",
     "obj2gltf": "^3.1.0"
   },
-  "bin": {
-    "gltf-merger": "index.js"
+  "scripts": {
+    "start": "node questions.js"
   },
-  "type": "module",
-  "description": "This is a tool using the incredible [GLTF-Transform](https://gltf-transform.donmccurdy.com/) library by [Don McCurdy](https://github.com/donmccurdy).",
-  "main": "index.js",
-  "devDependencies": {
-    "@types/node": "^16.10.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MrMagicPenguin/GLTF_Merger.git"
-  },
-  "keywords": [
-    "gltf",
-    "glb"
-  ],
-  "author": "Noah Price",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/MrMagicPenguin/GLTF_Merger/issues"
-  },
-  "homepage": "https://github.com/MrMagicPenguin/GLTF_Merger#readme"
+  "type": "module"
 }

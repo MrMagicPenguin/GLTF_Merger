@@ -9,13 +9,23 @@
     "obj2gltf": "^3.1.0"
   },
   "bin": {
-    "gltf-merger": "index.js"
+    "gltf-merger": "ts-node ./index.ts"
   },
+  "main": "index.ts",
   "type": "module",
   "description": "This is a tool using the incredible [GLTF-Transform](https://gltf-transform.donmccurdy.com/) library by [Don McCurdy](https://github.com/donmccurdy).",
-  "main": "index.js",
   "devDependencies": {
-    "@types/node": "^16.10.2"
+    "@types/node": "^16.10.2",
+    "nodemon": "^2.0.13",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  },
+  "scripts": {
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "create": "npm run build && npm run test",
+    "build": "tsc -p  .",
+    "local": "sudo npm i -g && gltf-merger",
+    "refresh": "rm -rf ./node_modules ./package-lock.json && npm install"
   },
   "repository": {
     "type": "git",

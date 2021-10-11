@@ -4,8 +4,13 @@
   "dependencies": {
     "@gltf-transform/core": "^0.12.4",
     "@gltf-transform/functions": "^0.12.4",
-    "inquirer": "^8.1.2",
+    "commander": "^8.2.0",
+    "inquirer": "^8.2.0",
     "obj2gltf": "^3.1.0"
+  },
+  "main": "./bin/index.js",
+  "bin": {
+    "merge-gltf": "./bin/index.js"
   },
   "scripts": {
     "start": "node index.js"

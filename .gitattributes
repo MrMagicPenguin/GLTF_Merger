@@ -1,0 +1,5 @@
+# Handle Line endings
+text=auto eol=lf
+
+# ignore binary files
+*.{png,.jpg,.jpeg,.gif,.webp,} binary

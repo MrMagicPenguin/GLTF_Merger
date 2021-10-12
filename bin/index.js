@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 import {program} from "commander";
+// import inquirer from 'inquirer'
 import {merge} from "../lib/commands/merge.js"
 
 

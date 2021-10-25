@@ -6,7 +6,7 @@ import {dedup, prune} from "@gltf-transform/functions";
 
 // use string over path functions for exact folder
 const f_out = './GLTFOut'
-const obj_seq = './models/'
+const obj_seq = './OBJSequence/'
 const glb_seq = path.join(f_out, "GLB Sequence")
 
 

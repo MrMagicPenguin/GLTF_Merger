@@ -7,7 +7,6 @@ import { prompt } from "../lib/commands/prompt.js";
 
 program
   .command("merge <format> [inDir] [outDir]")
-  .option("-d, --dry-run")
   // Add FPS flag
   .option("-s, --sequence [fps]", "Convert output to flipbook animation")
   .option(

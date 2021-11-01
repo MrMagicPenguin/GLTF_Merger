@@ -2,13 +2,18 @@
   "name": "mergegltf",
   "version": "1.0.0",
   "dependencies": {
-    "@gltf-transform/core": "^0.12.4",
-    "@gltf-transform/functions": "^0.12.4",
-    "inquirer": "^8.1.2",
+    "@gltf-transform/core": "^0.12.16",
+    "@gltf-transform/functions": "^0.12.16",
+    "commander": "^8.2.0",
+    "inquirer": "^8.2.0",
     "obj2gltf": "^3.1.0"
   },
+  "main": "./bin/index.js",
+  "bin": {
+    "merge-gltf": "./bin/index.js"
+  },
   "scripts": {
-    "start": "node questions.js"
+    "start": "node index.js"
   },
   "type": "module"
 }

@@ -2,11 +2,11 @@ import {Document, NodeIO} from '@gltf-transform/core';
 import path from "path";
 import fs from 'fs';
 import obj2gltf from 'obj2gltf'
-import {prune} from "@gltf-transform/functions";
+import {dedup, prune} from "@gltf-transform/functions";
 
 // use string over path functions for exact folder
 const f_out = './GLTFOut'
-const obj_seq = './models/'
+const obj_seq = './OBJSequence/'
 const glb_seq = path.join(f_out, "GLB Sequence")
 
 
@@ -34,12 +34,17 @@ function changeExtension(file, extension){
 }
 //convert OBJ to GLTF
 for (const file in targetFiles){
+    // Rename file to:
+    //* output_directory + file
     const fn = path.join(obj_seq, targetFiles[file]);
+
+    // describe output path as:
+    //* output_directory + file.EXT
     const fn_out = path.join(glb_seq + "", changeExtension(targetFiles[file], ".glb"));
+
 
     obj2gltf(fn ,{binary : true})
         .then(function(glb){
-            //const data = Buffer.from(JSON.stringify(glb));
             fs.writeFileSync(fn_out, glb);
         });
     //console.log("Files written to " + f_out)
@@ -84,4 +89,5 @@ for (const scene of root.listScenes()) {
 }
 
 await document.transform(prune());
+// add dedup pass
 io.write(path.join(f_out, "model.glb"), document)

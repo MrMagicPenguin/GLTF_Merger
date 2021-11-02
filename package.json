@@ -4,6 +4,7 @@
   "dependencies": {
     "@gltf-transform/core": "^0.12.16",
     "@gltf-transform/functions": "^0.12.16",
+    "cli-progress": "^3.9.1",
     "commander": "^8.2.0",
     "inquirer": "^8.2.0",
     "obj2gltf": "^3.1.0"
